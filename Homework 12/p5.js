@@ -1,4 +1,7 @@
-function setup() 
+let thePut;
+let theDrop;
+
+async function setup() 
 {
 
     createCanvas(500, 500);
@@ -21,9 +24,22 @@ function setup()
     triY_Three = 75;
     poleY = 100;
 
+    thePut = await loadSound('./assets/putt.mp3');
+    theDrop = await loadSound('./assets/drop-ball-in-cup.mp3');
+
+
+
 
 
     
+}
+
+function keyPressed()
+{
+    if (thePut.isPlaying())
+    {
+        thePut.stop();
+    }
 }
 
 // I made a nature scene of some trees, a moon, and stars
@@ -55,6 +71,7 @@ function draw()
         fill(0, 255, 0);
         textSize(32);
         text("You Win!", 150, 250);
+        theDrop.play();
     }
 
     if (offMapBool === true)
@@ -85,35 +102,39 @@ function draw()
     {
         if (key === 'w' || key === 'W') 
         {
-            y -= 5;
-            lightY -= 5;
-            shadowY -= 5;
+            y -= 50;
+            lightY -= 50;
+            shadowY -= 50;
             win();
             offMap();
+            thePut.play();
         } 
         else if (key === 's' || key === 'S') 
         {
-            y += 5;
-            lightY += 5;
-            shadowY += 5;
+            y += 50;
+            lightY += 50;
+            shadowY += 50;
             win();
             offMap();
+            thePut.play();
         } 
         else if (key === 'a' || key === 'A') 
         {
-            x -= 5;
-            lightX -= 5;
-            shadowX -= 5;
+            x -= 50;
+            lightX -= 50;
+            shadowX -= 50;
             win();
             offMap();
+            thePut.play();
         } 
         else if (key === 'd' || key === 'D') 
         {
-            x += 5;
-            lightX += 5;
-            shadowX += 5;
+            x += 50;
+            lightX += 50;
+            shadowX += 50;
             win();
             offMap();
+            thePut.play();
         }
     }
 }
